@@ -1,0 +1,51 @@
+---
+import Main from '../layouts/main.astro';
+import { get_user_status, getserver, check_login } from "../js/login_modun.js";
+let user_login = await get_user_status(Astro);
+if (!(await check_login(Astro))) {
+    return Astro.redirect("/login");
+}
+let guilds = await getserver(Astro);
+---
+<Main head_title="Dashboard">
+    <script ></script>
+    <link rel="stylesheet" href="/assets/dash.css"/>
+    <div id="sever">
+        
+    </div>
+    <script define:vars={{ guilds, user_login }}>
+        function servernameicon(name) {
+            return name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
+        }
+        let sdata = guilds.data;
+        for (let i of sdata) {
+            let atag = document.createElement("a")
+            atag.id = "servermain"
+            atag.href = `javascript:alert("Comming Soon")`
+            let shotname = servernameicon(i.name)
+            let name = i.name
+            if (!i.icon) {
+                atag.innerHTML = `<div id="serverbox">
+                    <div id="servertexticon">
+                        <span>${shotname}</span>
+                    </div>
+                    <div class="center" id="servernamebox">
+                    <span id="servername">
+                        ${name}
+                    </span>
+                </div>
+                </div>`
+            } else {
+                atag.innerHTML = `<div id="serverbox">
+                <img src="${i.icon}" alt="" id="servericon">
+                <div class="center" id="servernamebox">
+                    <span id="servername">
+                        ${name}
+                    </span>
+                </div>
+                </div>`
+            }
+            document.getElementById("sever").appendChild(atag)
+        }
+    </script>
+</Main>

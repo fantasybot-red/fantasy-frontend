@@ -1,0 +1,167 @@
+---
+import { encryptData } from '../js/encryption.js';
+var { head_title } = Astro.props;
+import { get_user_status } from "../js/login_modun.js";
+let user_login = await get_user_status(Astro);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" id="loadingcss" href="/assets/loading.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+        />
+        <link rel="stylesheet" href="/assets/main.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        />
+        <title>{head_title}</title>
+        <noscript>
+            <title>Fantasy Security</title>
+        </noscript>
+    </head>
+    <body>
+        <div id="loading">
+            <div class="scene">
+                <div class="plane">
+                    <div class="cube cube--0">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--0"></div>
+                    <div class="cube cube--1">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--1"></div>
+                    <div class="cube cube--2">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--2"></div>
+                    <div class="cube cube--3">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--3"></div>
+                    <div class="cube cube--4">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--4"></div>
+                    <div class="cube cube--5">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--5"></div>
+                    <div class="cube cube--6">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--6"></div>
+                    <div class="cube cube--7">
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                        <div class="cube__side"></div>
+                    </div>
+                    <div class="shadow shadow--7"></div>
+                </div>
+            </div>
+        </div>
+        <div id="root">
+            <header id="topnav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/assets/bot_avatar.png" alt="" width="auto" />
+                    </a>
+                </div>
+                <div class="deskcss">
+                    <nav>
+                        <ul class="hdd">
+                            <a href="/support">
+                                <li>Discord</li>
+                            </a>
+                            <a href="/invite">
+                                <li>Invite</li>
+                            </a>
+                            <a href="/login">
+                                <li id="lgb"></li>
+                            </a>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="mobiecss">
+                    <button class="mobiebt">
+                        <span
+                            class="mobiicon material-symbols-outlined"
+                            id="mobiicon">menu</span
+                        >
+                    </button>
+                </div>
+                <div id="mobidropbar" class="mobidropbar">
+                    <a href="/support">
+                        <li>Discord</li>
+                    </a>
+                    <a href="/invite">
+                        <li>Invite</li>
+                    </a>
+                    <a href="/login">
+                        <li id="lgbmb"></li>
+                        <script define:vars={{ user_login }}>
+                            document.getElementById("lgb").innerHTML =
+                                user_login;
+                            document.getElementById("lgbmb").innerHTML =
+                                user_login;
+                        </script>
+                    </a>
+                </div>
+            </header>
+            <main id="main">
+                <slot />
+            </main>
+        </div>
+        <noscript>
+            <div style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px">
+                <center><h1>Turn on JavaScript</h1></center>
+            </div>
+        </noscript>
+        <script src="../js/main.js"></script>
+    </body>
+</html>

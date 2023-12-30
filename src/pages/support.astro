@@ -1,0 +1,10 @@
+---
+const API_ENDPOINT = import.meta.env.API_ENDPOINT;
+let data = await fetch(API_ENDPOINT+"/info");
+let json_data = await data.json();
+if (Astro.url.pathname === "/support") {
+    return Astro.redirect(json_data.url);
+} else if (Astro.url.pathname === "/invite") {
+    return Astro.redirect(json_data.invite);
+}
+---

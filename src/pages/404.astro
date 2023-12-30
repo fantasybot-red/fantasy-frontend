@@ -1,0 +1,114 @@
+---
+const currentPath = Astro.url.pathname;
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy | 404</title>
+    <meta name="title" content="FantasyBot" />
+    <meta name="description" content="A Multipurpose For Your Discord Server Made By Vietnamese Dev" />
+    <meta name="copyright" content="Fantasy Team" />
+    <meta name="keywords" content="Discord Bot Multipurpose Vietnamese" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentPath} />
+    <meta property="og:title" content="FantasyBot" />
+    <meta property="og:description" content="A Multipurpose For Your Discord Server Made By Vietnamese Dev" />
+    <meta property="og:image" content="https://fantasybot.xyz/assets/bot_avatar.png" />
+    <meta property="twitter:url" content={currentPath} />
+    <meta property="twitter:title" content="FantasyBot" />
+    <meta property="twitter:description" content="A Multipurpose For Your Discord Server Made By Vietnamese Dev" />
+    <meta property="twitter:image" content="https://fantasybot.xyz/assets/bot_avatar.png" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Varela+Round);
+        @import url(https://fonts.googleapis.com/css?family=Nunito:400,700);
+
+        html,
+        body {
+            height: 99%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #303030;
+            color: rgb(255, 255, 255);
+            font-family: "Varela Round", Sans-serif;
+            text-shadow: 0 30px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .main {
+            text-align: center;
+            z-index: 5;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 95px;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .sbt {
+            background: linear-gradient(#ff4314, #f93163);
+            padding: 0 12px;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+            box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
+            outline: none;
+            color: #FFF;
+            font: 400 16px/2.5 Nunito, "Varela Round", Sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .bk {
+            background: linear-gradient(#ff4314, #f93163);
+            padding: 0 12px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
+            outline: none;
+            color: #FFF;
+            font: 400 16px/2.5 Nunito, "Varela Round", Sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .bk:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        let a = 0
+        var las = ["nothing here :\\", "pls go back to home :<"]
+        function ss(array) {
+            if (a == las.length) { window.location.replace("/"); } else { alert(array[a].toUpperCase()); }
+            a = a + 1
+        }
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <h1>404</h1>
+        <h2>Not Found</h2>
+        <p>It's Not a Bug, It's a Feature :)</p>
+        <button type="button" class="sbt" onclick="ss(las)" id="run">Stay Here</button><a href="/"><button class="bk"
+                type="button">Go back</button></a>
+    </div>
+</body>
+
+</html>

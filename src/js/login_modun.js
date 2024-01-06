@@ -1,5 +1,9 @@
-window.temp_cache = {};
-window.req = {};
+if (window.temp_cache == undefined) {
+    window.temp_cache = {};
+}
+if (window.req == undefined) {
+    window.req = {};
+}
 
 async function request(path, method="GET", body=null) {
     let headers = {};
@@ -27,7 +31,6 @@ async function waitForKey(dict, key) {
   }
 
 async function cache_check_support(key, cache, new_req) {
-    console.log(temp_cache);
     let cache_data = load_cache(key);
     if (cache_data && cache) {
         console.log("hit cache");

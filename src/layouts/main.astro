@@ -1,8 +1,6 @@
 ---
-import { encryptData } from '../js/encryption.js';
 var { head_title } = Astro.props;
-import { get_user_status } from "../js/login_modun.js";
-let user_login = await get_user_status(Astro);
+import Env from "../components/env.astro";
 ---
 
 <!doctype html>
@@ -27,6 +25,7 @@ let user_login = await get_user_status(Astro);
         </noscript>
     </head>
     <body>
+        <Env></Env>
         <div id="loading">
             <div class="scene">
                 <div class="plane">
@@ -122,7 +121,7 @@ let user_login = await get_user_status(Astro);
                                 <li>Invite</li>
                             </a>
                             <a href="/login">
-                                <li id="lgb"></li>
+                                <li id="lgb">Login</li>
                             </a>
                         </ul>
                     </nav>
@@ -143,15 +142,18 @@ let user_login = await get_user_status(Astro);
                         <li>Invite</li>
                     </a>
                     <a href="/login">
-                        <li id="lgbmb"></li>
-                        <script define:vars={{ user_login }}>
-                            document.getElementById("lgb").innerHTML =
-                                user_login;
-                            document.getElementById("lgbmb").innerHTML =
-                                user_login;
-                        </script>
+                        <li id="lgb">Login</li>
                     </a>
                 </div>
+                <script>
+                    import { get_user_status } from "../js/login_modun.js";
+                    let data = await get_user_status();
+                    if (data) {
+                        for (let i of document.querySelectorAll("[id=lgb]")) {
+                            i.innerHTML = data;
+                        }
+                    }
+                </script>
             </header>
             <main id="main">
                 <slot />

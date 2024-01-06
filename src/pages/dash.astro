@@ -1,11 +1,5 @@
 ---
 import Main from '../layouts/main.astro';
-import { get_user_status, getserver, check_login } from "../js/login_modun.js";
-let user_login = await get_user_status(Astro);
-if (!(await check_login(Astro))) {
-    return Astro.redirect("/login");
-}
-let guilds = await getserver(Astro);
 ---
 <Main head_title="Dashboard">
     <script ></script>
@@ -13,7 +7,12 @@ let guilds = await getserver(Astro);
     <div id="sever">
         
     </div>
-    <script define:vars={{ guilds, user_login }}>
+    <script>
+        import { get_guilds, check_login } from "../js/login_modun.js";
+        if (!(await check_login())) {
+            location.replace("/login");
+        }
+        let guilds = await get_guilds();
         function servernameicon(name) {
             return name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
         }
@@ -45,7 +44,12 @@ let guilds = await getserver(Astro);
                 </div>
                 </div>`
             }
-            document.getElementById("sever").appendChild(atag)
+            let sever_box = document.getElementById("sever");
+            if (sever_box != null) {
+                sever_box.appendChild(atag);
+            } else {
+                location.reload();
+            }
         }
     </script>
 </Main>

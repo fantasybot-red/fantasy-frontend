@@ -37,5 +37,8 @@ async function clearload() {
     root.removeAttribute("style")
     root.removeAttribute("class")
 }
-
-window.addEventListener("load", clearload)
+if (document.readyState != "complete") {
+    window.addEventListener("load", clearload);
+} else {
+    clearload();
+}

@@ -33,10 +33,8 @@ async function waitForKey(dict, key) {
 async function cache_check_support(key, cache, new_req) {
     let cache_data = load_cache(key);
     if (cache_data && cache) {
-        console.log("hit cache");
         return cache_data;
     } else if (key in window.temp_cache) {
-        console.log("hit temp cache");
         return window.temp_cache[key];
     } else if (key in window.req && !new_req) {
         await waitForKey(window.temp_cache, key);

@@ -2,65 +2,69 @@
 import Serialize from "@ayco/astro-resume";
 import Env from "../components/env.astro";
 var API_ENDPOINT = import.meta.env.API_ENDPOINT;
-const url = Astro.url.searchParams.get('p') || '/dash';
-let code_pram = Astro.url.searchParams.get('code');
+const url = Astro.url.searchParams.get("p") || "/dash";
+let code_pram = Astro.url.searchParams.get("code");
 let url_obj = new URL(url, "https://fantasybot.xyz");
 let path_redirect = url_obj.pathname + url_obj.search + url_obj.hash;
 
-let state_pram = Astro.url.searchParams.get('state');
+let state_pram = Astro.url.searchParams.get("state");
 let path_redirect_state = "/dash";
 let token_return = null;
 
 if (code_pram && state_pram) {
-    let rep = await fetch(API_ENDPOINT+'/login', {
-        method: 'POST',
+    let rep = await fetch(API_ENDPOINT + "/login", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             code: code_pram,
-            redirect_uri: Astro.url.origin + Astro.url.pathname
-        })
+            redirect_uri: Astro.url.origin + Astro.url.pathname,
+        }),
     });
     let json_data = await rep.json();
     if (!json_data.login) {
-        return Astro.redirect('/');
+        return Astro.redirect("/");
     }
     let url_obj_state = new URL(atob(state_pram), "https://fantasybot.xyz");
     path_redirect_state = url_obj.pathname + url_obj.search + url_obj.hash;
-    token_return = rep.headers.get('Authorization');
+    token_return = rep.headers.get("Authorization");
 }
-let oauth_url = `https://discord.com/oauth2/authorize?client_id=931353470353674291&response_type=code&redirect_uri=${Astro.url.origin}/login&scope=identify+guilds&state=${btoa(path_redirect)}`;
+let oauth_url = `https://discord.com/oauth2/authorize?client_id=931353470353674291&response_type=code&redirect_uri=${
+    Astro.url.origin
+}/login&scope=identify+guilds&state=${btoa(path_redirect)}`;
 let data_send = {
     path_redirect_state,
     token_return,
-    oauth_url
-}
+    oauth_url,
+};
 export type Data = typeof data_send;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <Env />
-    <Serialize id="data-json" data={data_send} />
-    <script>
-        import { check_login } from '../js/login_modun.js';
-        import {deserialize} from '@ayco/astro-resume';
-        const data = deserialize('data-json');
-        if (data.token_return) {
-            localStorage.setItem("TOKEN", data.token_return);
-            location.replace(data.path_redirect_state);
-        }
-        if (await check_login()) {
-            location.replace("/dash");
-        } else {
-            location.replace(data.oauth_url);
-        }
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/main.css" />
+        <title>Login</title>
+    </head>
+    <body>
+        <Env />
+        <Serialize id="data-json" data={data_send} />
+        <script>
+            import { check_login } from "../js/login_modun.js";
+            import { deserialize } from "@ayco/astro-resume";
+            const data = deserialize("data-json");
+            if (data.token_return) {
+                localStorage.setItem("TOKEN", data.token_return);
+                location.replace(data.path_redirect_state);
+            }
+            if (await check_login()) {
+                location.replace("/dash");
+            } else {
+                location.replace(data.oauth_url);
+            }
+        </script>
+    </body>
 </html>

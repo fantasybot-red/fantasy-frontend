@@ -1,25 +1,21 @@
-let ison = false;
-let hasload = false;
-
 function opendev() {
     let root = document.getElementById('main');
     let db = document.getElementById("mobidropbar");
     let ic = document.getElementById("mobiicon");
-    if (ison) {
+    if (window.ison_mobile) {
         db.classList.remove(`opun`);
         root.classList.remove(`blurroot`)
         ic.innerText = 'menu';
-        ison = false;
+        window.ison_mobile = false;
     } else {
         db.classList.add(`opun`);
         root.classList.add(`blurroot`)
         ic.innerText = 'close';
-        ison = true;
+        window.ison_mobile = true;
     }
 }
 
-let icon = document.getElementById("mobiicon");
-icon.addEventListener("click", opendev, true);
+
 
 async function clearload() {
     let load = document.getElementById("loading")
@@ -28,7 +24,6 @@ async function clearload() {
     root.classList.add("rootloading")
     load.style.opacity = "0";
     await new Promise(r => setTimeout(r, 1000));
-    hasload = true
     loadcss.remove();
     load.remove();
     await new Promise(r => setTimeout(r, 100));
@@ -37,8 +32,15 @@ async function clearload() {
     root.removeAttribute("style")
     root.removeAttribute("class")
 }
-if (document.readyState != "complete") {
-    window.addEventListener("load", clearload);
-} else {
-    clearload();
+
+
+export function init() {
+    window.ison_mobile = false;
+    let icon = document.getElementById("mobiicon");
+    icon.addEventListener("click", opendev, true);
+    if (document.readyState != "complete") {
+        window.addEventListener("load", clearload);
+    } else {
+        clearload();
+    }
 }

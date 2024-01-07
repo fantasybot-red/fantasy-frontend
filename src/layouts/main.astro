@@ -165,6 +165,9 @@ import Env from "../components/env.astro";
                 <center><h1>Turn on JavaScript</h1></center>
             </div>
         </noscript>
-        <script src="../js/main.js"></script>
+        <script>
+            import { init } from "../js/init.js";
+            init();
+        </script>
     </body>
 </html>

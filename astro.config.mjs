@@ -3,16 +3,17 @@ import node from '@astrojs/node';
 import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
 
 let obfuscator_config = {
-  identifierNamesGenerator: 'mangled-shuffled',
+  identifierNamesGenerator: 'mangled',
   stringArrayCallsTransform: true,
   stringArrayEncoding: ['rc4'],
   deadCodeInjection: true
 };
 
 let obfuscator = obfuscatorPlugin({
-  include: ["**/*.js"],
-  exclude: ["**/node_modules/*"],
+  include: ["**/*.js", /.*\/hoisted\.js.*/],
+  exclude: [],
   apply: "build",
+  debugger: true,
   options: obfuscator_config
 })
 
@@ -21,7 +22,7 @@ let vite_config = {
   build: {
     rollupOptions: {
       external: [
-        /^node:.*/,
+        /^node:.*/
       ]
     }
   }

@@ -147,13 +147,7 @@ import Env from "../components/env.astro";
                 </div>
                 <script>
                     import { get_user_status } from "../js/login_modun.js";
-                    let data = await get_user_status();
-                    let lgb = document.querySelectorAll("[id=lgb]");
-                    if (data) {
-                        for (let i of lgb) {
-                            i.innerHTML = data;
-                        }
-                    }
+                    await get_user_status();
                 </script>
             </header>
             <main id="main">
@@ -165,9 +159,6 @@ import Env from "../components/env.astro";
                 <center><h1>Turn on JavaScript</h1></center>
             </div>
         </noscript>
-        <script>
-            import { init } from "../js/init.js";
-            init();
-        </script>
+        <script src="../js/init.js"></script>
     </body>
 </html>

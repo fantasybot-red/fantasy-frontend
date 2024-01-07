@@ -5,7 +5,7 @@ if (window.req == undefined) {
     window.req = {};
 }
 
-async function request(path, method="GET", body=null) {
+async function request(path, method = "GET", body = null) {
     let headers = {};
     let raw_body = body ? JSON.stringify(body) : null;
     if (body) {
@@ -15,7 +15,8 @@ async function request(path, method="GET", body=null) {
     if (token) {
         headers["Authorization"] = "Bearer " + token;
     }
-    let rep = await fetch(window.API_ENDPOINT+path, {method: method,
+    let rep = await fetch(window.API_ENDPOINT + path, {
+        method: method,
         headers: headers,
         body: raw_body,
         mode: 'cors',
@@ -25,10 +26,10 @@ async function request(path, method="GET", body=null) {
 
 async function waitForKey(dict, key) {
     while (!dict.hasOwnProperty(key)) {
-      await new Promise(resolve => setTimeout(resolve, 1));
+        await new Promise(resolve => setTimeout(resolve, 1));
     }
     return dict[key];
-  }
+}
 
 async function cache_check_support(key, cache, new_req) {
     let cache_data = load_cache(key);
@@ -57,7 +58,7 @@ function load_cache(key) {
 }
 
 
-export async function get_user(cache=true, new_req=false) {
+export async function get_user(cache = true, new_req = false) {
     let cache_data = await cache_check_support('user', cache, new_req);
     if (cache_data) {
         return cache_data;
@@ -77,14 +78,17 @@ export async function get_user_status() {
     if (userinfo.status) {
         let user_display = userinfo.user.username + '#' + userinfo.user.discriminator;
         if (userinfo.user.discriminator * 1 == 0) {
-            user_display = "@"+userinfo.user.username;
+            user_display = "@" + userinfo.user.username;
         }
-        return `<span>${user_display}</span> <img class="useravatar" src="${userinfo.user.avatar}" alt="" width="30" height="auto"></img>`;
+        let raw_html = `<span>${user_display}</span> <img class="useravatar" src="${userinfo.user.avatar}" alt="" width="30" height="auto"></img>`;
+        let lgb = document.querySelectorAll("[id=lgb]");
+        for (let i of lgb) {
+            i.innerHTML = raw_html;
+        }
     }
-    return null;
 }
 
-export async function check_login(cache=false) {
+export async function check_login(cache = false) {
     let user_data = await get_user(cache);
     if (!user_data.status) {
         localStorage.clear();
@@ -93,7 +97,7 @@ export async function check_login(cache=false) {
     return user_data.status;
 }
 
-export async function get_guilds(cache=true, new_req=false) {
+export async function get_guilds(cache = true, new_req = false) {
     let cache_data = await cache_check_support('guilds', cache, new_req);
     if (cache_data) {
         return cache_data;

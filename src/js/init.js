@@ -34,7 +34,7 @@ async function clearload() {
 }
 
 
-export function init() {
+function init() {
     window.ison_mobile = false;
     let icon = document.getElementById("mobiicon");
     icon.addEventListener("click", opendev, true);
@@ -44,3 +44,5 @@ export function init() {
         clearload();
     }
 }
+
+init();

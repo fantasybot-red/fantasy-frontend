@@ -2,6 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
+*,
+*::before,
+*::after {
+    box-sizing: unset;
+}
+
 #loading {
     opacity: 1;
     transition: all 1s ease-in-out;
@@ -46,7 +52,7 @@ body {
 }
 
 #topnav {
-    display:block !important;
+    display: block !important;
     position: sticky;
     position: -webkit-sticky;
     top: 15px;
@@ -103,6 +109,7 @@ body {
 .hdd {
     padding-left: 10pt;
     padding-right: 10pt;
+    margin: revert;
 }
 
 .hdd li {
@@ -134,16 +141,17 @@ body {
     align-items: center;
 }
 
-.mobidropbar a {
+.mobidropbar a,
+.mobidropbar #dropdown-center {
     display: flex;
-    align-items: center; 
-    width: 100%; 
+    align-items: center;
+    width: 100%;
     align-self: center;
 }
 
 
 .mobidropbar a li {
-    width: 100%; 
+    width: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -167,7 +175,7 @@ body {
 }
 
 .blurroot {
-    filter: none; 
+    filter: none;
     -webkit-filter: none;
     pointer-events: auto;
     user-select: auto;

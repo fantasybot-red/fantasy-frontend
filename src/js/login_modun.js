@@ -74,7 +74,7 @@ export async function get_user(cache = true, new_req = false) {
 }
 
 export async function get_user_status() {
-    let userinfo = await get_user();
+    let userinfo = await get_user(false);
     if (userinfo.status) {
         let user_display = userinfo.user.username + '#' + userinfo.user.discriminator;
         if (userinfo.user.discriminator * 1 == 0) {

@@ -1,0 +1,14 @@
+---
+var config_spa = Astro.props;
+---
+<script define:vars={{ config_spa }}>
+    document.addEventListener("click", function(e) {
+        if (!e.target) {
+            return;
+        }
+        if (!e.target.tagName.matches("A")) {
+            return;
+        }
+        e.preventDefault();
+    }); 
+</script>

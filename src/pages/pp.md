@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/main.astro
-title: Privacy Policy
+head_title: Privacy Policy
 ---
 # Privacy Policy
 

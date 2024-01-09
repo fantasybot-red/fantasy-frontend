@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/main.astro
-title: Terms and Conditions
+head_title: Terms and Conditions
 ---
 # Terms and Conditions
 

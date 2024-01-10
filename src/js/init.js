@@ -17,31 +17,45 @@ function opendev() {
 
 
 
-async function clearload() {
-    let load = document.getElementById("loading")
-    let root = document.getElementById("root")
-    let loadcss = document.getElementById("loadingcss")
-    root.classList.add("rootloading")
+async function end_load() {
+    let load = document.getElementById("loading");
+    let root = document.getElementById("root");
     load.style.opacity = "0";
     await new Promise(r => setTimeout(r, 1000));
-    loadcss.remove();
-    load.remove();
+    load.setAttribute("hidden", "");
+    root.removeAttribute("hidden");
     await new Promise(r => setTimeout(r, 100));
     root.style.opacity = "1";
     await new Promise(r => setTimeout(r, 1000));
-    root.removeAttribute("style")
-    root.removeAttribute("class")
+    root.removeAttribute("style");
+    root.removeAttribute("class");
 }
 
+async function start_load() {
+    let load = document.getElementById("loading");
+    let root = document.getElementById("root");
+    load.style.opacity = "1";
+    root.classList.add("rootloading");
+    await new Promise(r => setTimeout(r, 1000));
+    root.setAttribute("hidden", "");
+    load.removeAttribute("hidden");
+    await new Promise(r => setTimeout(r, 100));
+    root.style.opacity = "0";
+    await new Promise(r => setTimeout(r, 1000));
+    load.removeAttribute("style");
+}
+
+window.start_load = start_load;
+window.end_load = end_load;
 
 function init() {
     window.ison_mobile = false;
     let icon = document.getElementById("mobiicon");
     icon.addEventListener("click", opendev, true);
     if (document.readyState != "complete") {
-        window.addEventListener("load", clearload);
+        window.addEventListener("load", end_load);
     } else {
-        clearload();
+        end_load();
     }
 }
 

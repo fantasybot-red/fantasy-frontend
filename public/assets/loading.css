@@ -9,11 +9,6 @@
   --size: 5;
 }
 
-#root {
-  visibility: hidden !important;
-  display: none;
-}
-
 .scene {
   perspective: 800px;
   transform-style: preserve-3d;

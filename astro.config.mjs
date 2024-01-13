@@ -29,6 +29,9 @@ let vite_config = {
 };
 export default defineConfig({
   output: 'server',
+  server: {
+    port: import.meta.env.DEV ? 80 : undefined
+  },
   vite: vite_config,
   adapter: node({
     mode: 'middleware',

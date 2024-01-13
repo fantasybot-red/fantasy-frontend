@@ -3,7 +3,7 @@ var head_title = Astro.props.head_title;
 if (!head_title) {
     head_title = Astro.props.frontmatter.head_title;
 }
-import Env from "../components/env_script.astro";
+import Env_Script from "../components/env_script.astro";
 import Loading from "../components/loading.astro";
 ---
 
@@ -34,7 +34,7 @@ import Loading from "../components/loading.astro";
         </noscript>
     </head>
     <body>
-        <Env />
+        <Env_Script />
         <Loading />
         <div id="root" class="rootloading" hidden>
             <header id="topnav">

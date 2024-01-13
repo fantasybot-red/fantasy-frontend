@@ -1,6 +1,6 @@
 ---
 import Serialize from "@ayco/astro-resume";
-import Env from "../components/env.astro";
+import Env_Script from "../components/env_script.astro";
 var API_ENDPOINT = import.meta.env.API_ENDPOINT;
 const url = Astro.url.searchParams.get("p") || "/dash";
 let code_pram = Astro.url.searchParams.get("code");
@@ -50,7 +50,7 @@ export type Data = typeof data_send;
         <title>Login</title>
     </head>
     <body>
-        <Env/>
+        <Env_Script/>
         <Serialize id="data-json" data={data_send} />
         <script>
             import { check_login } from "../js/login_modun.js";

@@ -11,17 +11,17 @@ var {} = Astro.props;
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link" href="/support">Support</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link" href="/invite">Invite</a>
           </li>
-          <li class="nav-item" id="login-link">
+          <li class="nav-item text-center" id="login-link">
             <a class="nav-link" href="/login">Login</a>
           </li>
-          <li class="nav-item dropdown" id="user-icon" hidden>
-            <a class="nav-link" href="#" id="avt-dd" role="button" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item dropdown text-center" id="user-icon" hidden>
+            <a class="nav-link" href="#" id="avt-dd" role="button" data-bs-display="static" data-bs-auto-close="true" data-bs-toggle="dropdown" aria-expanded="false">
               <span id="user-name"></span> <img class="useravatar" id="user-avatar" alt="" width="35" height="auto"></img>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="avt-dd">

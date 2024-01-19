@@ -5,6 +5,8 @@ if (window.req == undefined) {
     window.req = {};
 }
 
+let rate_limit_mess = "you have been rate limited\nPlease wait and try again !";
+
 async function request(path, method = "GET", body = null) {
     let headers = {};
     let raw_body = body ? JSON.stringify(body) : null;
@@ -21,6 +23,10 @@ async function request(path, method = "GET", body = null) {
         body: raw_body,
         mode: 'cors',
     });
+    if (rep.status == 401) {
+        localStorage.clear();
+        sessionStorage.clear();
+    }
     return rep;
 }
 
@@ -29,6 +35,10 @@ async function waitForKey(dict, key) {
         await new Promise(resolve => setTimeout(resolve, 1));
     }
     return dict[key];
+}
+
+export async function logout() {
+    await request('/logout');
 }
 
 async function cache_check_support(key, cache, new_req) {
@@ -65,7 +75,7 @@ export async function get_user(cache = true, new_req = false) {
     }
     let rep = await request('/@me');
     if (rep.status === 429) {
-        document.body.innerHTML = ratelimit;
+        alert(rate_limit_mess);
         throw Error("Rate Limit");
     }
     let data = await rep.json();
@@ -80,11 +90,12 @@ export async function get_user_status() {
         if (userinfo.user.discriminator * 1 == 0) {
             user_display = "@" + userinfo.user.username;
         }
-        let raw_html = `<span>${user_display}</span> <img class="useravatar" src="${userinfo.user.avatar}" alt="" width="30" height="auto"></img>`;
-        let lgb = document.querySelectorAll("[id=lgb]");
-        for (let i of lgb) {
-            i.innerHTML = raw_html;
-        }
+        let user_name = document.getElementById("user-name");
+        let user_avatar = document.getElementById("user-avatar");
+        user_avatar.src = userinfo.user.avatar;
+        user_name.innerText = user_display;
+        document.getElementById("user-icon").removeAttribute("hidden");
+        document.getElementById("login-link").setAttribute("hidden", "");
     }
 }
 
@@ -104,7 +115,7 @@ export async function get_guilds(cache = true, new_req = false) {
     }
     let rep = await request('/@me/guilds');
     if (rep.status === 429) {
-        document.body.innerHTML = ratelimit;
+        alert(rate_limit_mess);
         throw Error("Rate Limit");
     }
     let data = await rep.json();

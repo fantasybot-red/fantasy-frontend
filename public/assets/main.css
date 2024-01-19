@@ -2,12 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
-*,
-*::before,
-*::after {
-    box-sizing: unset;
-}
-
 #loading {
     opacity: 1;
     transition: all 1s ease-in-out;
@@ -35,7 +29,7 @@ body {
 }
 
 * {
-    color: #c4c4c4;
+    color: #c4c4c4 !important;
     font-family: 'VT323';
 }
 
@@ -46,167 +40,43 @@ body {
     -moz-transition: all 1s ease-in-out;
 }
 
-#root {
-    margin-right: 15px;
-    margin-left: 15px;
-}
-
 #topnav {
-    display: block !important;
-    position: sticky;
-    position: -webkit-sticky;
     top: 15px;
-    clear: both;
-    overflow: auto;
     margin-right: 15px;
     margin-left: 15px;
     border-radius: 15px;
-    background-color: #4f4f4f;
+    background-color: #4f4f4f !important;
     transform: scale(1);
     transition: all 0.5s ease-in-out;
 }
 
 #topnav:hover {
     transform: scale(1.02);
-    background-color: #3f3f3f;
+    background-color: #3f3f3f !important;
 }
 
-.deskcss nav {
-    float: right;
+.nav-item {
+    border-radius: 15px;
 }
+
+.nav-item * {
+    font-size: x-large;
+}
+
+.nav-item:hover {
+    background-color: rgb(100, 100, 100) !important;
+    transition: all 0.3s ease-in-out;
+} 
 
 .logo {
-    display: flex;
-    margin: auto;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    margin-left: 10pt;
-    float: left;
-}
-
-.logo a {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-}
-
-.logo img {
     border-radius: 50px;
-    width: auto;
-    height: 70px;
 }
 
-
-.logo img:hover {
+.logo:hover {
     background-color: rgb(100, 100, 100);
     transition: all 0.3s ease-in-out;
 }
 
-.hdd {
-    padding-left: 10pt;
-    padding-right: 10pt;
-    margin: revert;
-}
-
-.hdd li {
-    display: inline-flex;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    padding: 10px;
-    font-size: 25px;
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
-}
-
-.hdd li:hover {
-    background-color: rgb(100, 100, 100);
-}
-
-.mobiecss {
-    display: none;
-}
-
-.mobiicon {
-    transform: scale(1.5);
-    margin: 25px;
-}
-
-.mobidropbar {
-    display: none;
-    align-items: center;
-}
-
-.mobidropbar a,
-.mobidropbar #dropdown-center {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    align-self: center;
-}
-
-
-.mobidropbar a li {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    padding: 10px;
-    font-size: 25px;
-    border-radius: 15px;
-}
-
-.mobisbotun {
-    background-color: #919191;
-}
-
-.mobiebt {
-    border: transparent;
-    background-color: transparent;
-    float: right;
-}
-
-.opun {
-    display: none;
-}
-
-.blurroot {
-    filter: none;
-    -webkit-filter: none;
-    pointer-events: auto;
-    user-select: auto;
-    -webkit-user-drag: auto;
-}
-
-@media only screen and (max-width: 600px) {
-    .deskcss {
-        display: none;
-    }
-
-    .logo {
-        position: static !important;
-    }
-
-    .blurroot {
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
-        pointer-events: none;
-        user-select: none;
-        -webkit-user-drag: none;
-    }
-
-    .opun {
-        display: block;
-    }
-
-    .mobiecss {
-        display: block;
-    }
-}
 
 .useravatar {
     display: inline-flex;

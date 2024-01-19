@@ -5,6 +5,7 @@ if (!head_title) {
 }
 import Env_Script from "../components/env_script.astro";
 import Loading from "../components/loading.astro";
+import Nav_Bar from "../components/nav_bar.astro";
 ---
 
 <!doctype html>
@@ -13,21 +14,33 @@ import Loading from "../components/loading.astro";
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.css"
+        />
         <link rel="stylesheet" href="/assets/main.css" />
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         />
-        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-YS5RWDRN7N"></script>
+        <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-YS5RWDRN7N"
+        ></script>
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
 
-            gtag('config', 'G-YS5RWDRN7N');
+            gtag("config", "G-YS5RWDRN7N");
         </script>
-        <script is:inline src="https://js.sentry-cdn.com/b0b31aaf38de4cfaa4e02a717b357fac.min.js" crossorigin="anonymous"></script>
+        <script
+            is:inline
+            src="https://js.sentry-cdn.com/b0b31aaf38de4cfaa4e02a717b357fac.min.js"
+            crossorigin="anonymous"></script>
         <title>{head_title}</title>
         <noscript>
             <title>Fantasy Security</title>
@@ -37,63 +50,23 @@ import Loading from "../components/loading.astro";
         <Env_Script />
         <Loading />
         <div id="root" class="rootloading" hidden>
-            <header id="topnav">
-                <div class="logo">
-                    <a href="/">
-                        <img src="/assets/bot_avatar.png" alt="" width="auto" />
-                    </a>
-                </div>
-                <div class="deskcss">
-                    <nav>
-                        <ul class="hdd">
-                            <a href="/support">
-                                <li>Discord</li>
-                            </a>
-                            <a href="/invite">
-                                <li>Invite</li>
-                            </a>
-                            <a href="/login">
-                                <li id="lgb">Login</li>
-                            </a>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="mobiecss">
-                    <button class="mobiebt">
-                        <span
-                            class="mobiicon material-symbols-outlined"
-                            id="mobiicon">menu</span
-                        >
-                    </button>
-                </div>
-                <div id="mobidropbar" class="mobidropbar">
-                    <a href="/support">
-                        <li>Discord</li>
-                    </a>
-                    <a href="/invite">
-                        <li>Invite</li>
-                    </a>
-                    <a href="/login">
-                        <li id="lgb">Login</li>
-                    </a>
-                </div>
-                <script>
-                    import { get_user_status } from "../js/login_modun.js";
-                    await get_user_status();
-                </script>
-            </header>
-            <main id="main">
+            <Nav_Bar />
+            <div id="main">
                 <slot />
-            </main>
-        </div>
-        <noscript>
-            <div
-                style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px"
-            >
-                <center><h1>Turn on JavaScript</h1></center>
             </div>
-        </noscript>
-        <script is:inline src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../js/init.js"></script>
+        </div>
+        
     </body>
+    <noscript>
+        <div
+            style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px"
+        >
+            <center><h1>Turn on JavaScript</h1></center>
+        </div>
+    </noscript>
+    <script
+        is:inline
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="../js/init.js"></script>
 </html>

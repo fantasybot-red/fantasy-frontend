@@ -1,0 +1,40 @@
+---
+var {} = Astro.props;
+---
+<nav id="topnav" class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img class="logo" src="/assets/bot_avatar.png" alt="" width="60" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/support">Support</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/invite">Invite</a>
+          </li>
+          <li class="nav-item" id="login-link">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item dropdown" id="user-icon" hidden>
+            <a class="nav-link" href="#" id="avt-dd" role="button" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="user-name"></span> <img class="useravatar" id="user-avatar" alt="" width="30" height="auto"></img>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="avt-dd">
+              <li><a class="dropdown-item" href="/dash">Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<script>
+    import { get_user_status } from "../js/login_modun.js";
+    await get_user_status();
+</script>

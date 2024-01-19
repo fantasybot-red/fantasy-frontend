@@ -1,22 +1,3 @@
-function opendev() {
-    let root = document.getElementById('main');
-    let db = document.getElementById("mobidropbar");
-    let ic = document.getElementById("mobiicon");
-    if (window.ison_mobile) {
-        db.classList.remove(`opun`);
-        root.classList.remove(`blurroot`)
-        ic.innerText = 'menu';
-        window.ison_mobile = false;
-    } else {
-        db.classList.add(`opun`);
-        root.classList.add(`blurroot`)
-        ic.innerText = 'close';
-        window.ison_mobile = true;
-    }
-}
-
-
-
 async function end_load() {
     let load = document.getElementById("loading");
     let root = document.getElementById("root");
@@ -49,9 +30,6 @@ window.start_load = start_load;
 window.end_load = end_load;
 
 function init() {
-    window.ison_mobile = false;
-    let icon = document.getElementById("mobiicon");
-    icon.addEventListener("click", opendev, true);
     if (document.readyState != "complete") {
         window.addEventListener("load", end_load);
     } else {

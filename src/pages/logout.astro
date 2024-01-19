@@ -1,0 +1,23 @@
+---
+import Env_Script from "../components/env_script.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/main.css" />
+        <title>Logout</title>
+    </head>
+    <body>
+        <Env_Script/>
+        <script>
+            import { logout } from "../js/login_modun.js";
+            await logout();
+            localStorage.clear();
+            sessionStorage.clear();
+            location.replace("/");
+        </script>
+    </body>
+</html>

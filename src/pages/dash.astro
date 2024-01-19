@@ -21,27 +21,35 @@ import Main from '../layouts/main.astro';
             atag.href = `javascript:alert("Comming Soon")`
             let shotname = servernameicon(i.name)
             let name = i.name
+            let serverbox = document.createElement("div");
+            serverbox.id = "serverbox";
+
             if (!i.icon) {
-                atag.innerHTML = `<div id="serverbox">
-                    <div id="servertexticon">
-                        <span>${shotname}</span>
-                    </div>
-                    <div class="center" id="servernamebox">
-                    <span id="servername">
-                        ${name}
-                    </span>
-                </div>
-                </div>`
+                let servertexticon = document.createElement("div");
+                servertexticon.id = "servertexticon";
+                const spanShotname = document.createElement("span");
+                spanShotname.textContent = shotname;
+                servertexticon.appendChild(spanShotname);
+                serverbox.appendChild(servertexticon);
             } else {
-                atag.innerHTML = `<div id="serverbox">
-                <img src="${i.icon}" alt="" id="servericon">
-                <div class="center" id="servernamebox">
-                    <span id="servername">
-                        ${name}
-                    </span>
-                </div>
-                </div>`
+                let img = document.createElement("img");
+                img.src = i.icon;
+                img.alt = "";
+                img.id = "servericon";
+                serverbox.appendChild(img);
             }
+            
+
+            const servernamebox = document.createElement("div");
+            servernamebox.className = "center";
+            servernamebox.id = "servernamebox";
+            const spanName = document.createElement("span");
+            spanName.id = "servername";
+            spanName.textContent = name;
+            servernamebox.appendChild(spanName);
+            
+            serverbox.appendChild(servernamebox);
+            atag.appendChild(serverbox);
             let sever_box = document.getElementById("sever");
             if (sever_box != null) {
                 sever_box.appendChild(atag);

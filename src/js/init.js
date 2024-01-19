@@ -1,3 +1,5 @@
+import { get_user_status } from "../js/login_modun.js";
+
 async function end_load() {
     let load = document.getElementById("loading");
     let root = document.getElementById("root");
@@ -29,7 +31,8 @@ async function start_load() {
 window.start_load = start_load;
 window.end_load = end_load;
 
-function init() {
+async function init() {
+    await get_user_status();
     if (document.readyState != "complete") {
         window.addEventListener("load", end_load);
     } else {

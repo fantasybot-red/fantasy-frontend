@@ -57,26 +57,33 @@ body {
 
 .nav-item {
     border-radius: 15px;
-}
-
-.nav-item * {
-    font-size: x-large;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-item:hover {
     background-color: rgb(100, 100, 100) !important;
-    transition: all 0.3s ease-in-out;
 } 
+
+.nav-item .nav-link {
+    font-size: x-large;
+}
 
 .logo {
     border-radius: 50px;
+    transition: all 0.3s ease-in-out;
 }
 
 .logo:hover {
     background-color: rgb(100, 100, 100);
+}
+
+.navbar-toggler {
     transition: all 0.3s ease-in-out;
 }
 
+.navbar-toggler:focus {
+    background-color: rgb(100, 100, 100);
+}
 
 .useravatar {
     display: inline-flex;

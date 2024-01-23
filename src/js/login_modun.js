@@ -23,6 +23,9 @@ async function request(path, method = "GET", body = null) {
         body: raw_body,
         mode: 'cors',
     });
+    if (rep.headers.get("Authorization-Update")) {
+        localStorage.setItem("TOKEN", rep.headers.get("Authorization-Update"));
+    }
     if (rep.status == 401) {
         localStorage.clear();
         sessionStorage.clear();

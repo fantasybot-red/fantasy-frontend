@@ -28,7 +28,7 @@ if (code_pram && state_pram) {
     }
     let url_obj_state = new URL(atob(state_pram), "https://fantasybot.xyz");
     path_redirect_state = url_obj.pathname + url_obj.search + url_obj.hash;
-    token_return = rep.headers.get("Authorization");
+    token_return = rep.headers.get("Authorization-Update");
 }
 let oauth_url = `https://discord.com/oauth2/authorize?client_id=931353470353674291&response_type=code&redirect_uri=${
     Astro.url.origin

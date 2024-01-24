@@ -32,6 +32,7 @@ window.start_load = start_load;
 window.end_load = end_load;
 
 async function init() {
+    if (location.hostname == "localhost") location.replace("https://test.fantasybot.xyz/")
     await get_user_status();
     if (document.readyState != "complete") {
         window.addEventListener("load", end_load);

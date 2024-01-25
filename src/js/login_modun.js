@@ -22,13 +22,13 @@ async function request(path, method = "GET", body = null) {
         headers: headers,
         body: raw_body,
         mode: 'cors',
+        credentials: 'include'
     });
     if (rep.headers.get("Authorization-Update")) {
         localStorage.setItem("TOKEN", rep.headers.get("Authorization-Update"));
     }
     if (rep.status == 401) {
         localStorage.clear();
-        sessionStorage.clear();
     }
     return rep;
 }
@@ -59,15 +59,13 @@ async function cache_check_support(key, cache, new_req) {
 
 function save_cache(key, data) {
     window.temp_cache[key] = data;
-    sessionStorage.setItem(key, JSON.stringify(data));
 }
 
 function load_cache(key) {
     if (key in temp_cache) {
         return temp_cache[key];
     }
-    let data = sessionStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
+    return null;
 }
 
 

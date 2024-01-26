@@ -5,6 +5,10 @@ let json_data = await data.json();
 if (Astro.url.pathname === "/support") {
     return Astro.redirect(json_data.url);
 } else if (Astro.url.pathname === "/invite") {
-    return Astro.redirect(json_data.invite);
+    let guild_id = Astro.url.searchParams.get('gid') || "";
+    if (guild_id) {
+        guild_id = "&guild_id=" + encodeURIComponent(guild_id)
+    }
+    return Astro.redirect(json_data.invite+guild_id);
 }
 ---

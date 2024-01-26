@@ -3,6 +3,7 @@ import Main from '../layouts/main.astro';
 ---
 <Main head_title="Dashboard">
     <link rel="stylesheet" href="/assets/dash.css"/>
+    <div style="width: 100%;"><button id="g_refresh">Refresh</button></div>
     <div id="sever">
     </div>
     <script>
@@ -10,52 +11,61 @@ import Main from '../layouts/main.astro';
         if (!(await check_login())) {
             location.replace("/login");
         }
-        let guilds = await get_guilds();
-        function servernameicon(name) {
-            return name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
-        }
-        let sdata = guilds.data;
-        for (let i of sdata) {
-            let atag = document.createElement("a")
-            atag.id = "servermain"
-            atag.href = `javascript:alert("Comming Soon")`
-            let shotname = servernameicon(i.name)
-            let name = i.name
-            let serverbox = document.createElement("div");
-            serverbox.id = "serverbox";
-
-            if (!i.icon) {
-                let servertexticon = document.createElement("div");
-                servertexticon.id = "servertexticon";
-                const spanShotname = document.createElement("span");
-                spanShotname.textContent = shotname;
-                servertexticon.appendChild(spanShotname);
-                serverbox.appendChild(servertexticon);
-            } else {
-                let img = document.createElement("img");
-                img.src = i.icon;
-                img.alt = "";
-                img.id = "servericon";
-                serverbox.appendChild(img);
-            }
-            
-
-            const servernamebox = document.createElement("div");
-            servernamebox.className = "center";
-            servernamebox.id = "servernamebox";
-            const spanName = document.createElement("span");
-            spanName.id = "servername";
-            spanName.textContent = name;
-            servernamebox.appendChild(spanName);
-            
-            serverbox.appendChild(servernamebox);
-            atag.appendChild(serverbox);
+        async function servers(cache=false) {
             let sever_box = document.getElementById("sever");
-            if (sever_box != null) {
-                sever_box.appendChild(atag);
-            } else {
-                location.reload();
+            if (sever_box?.innerHTML) { sever_box.innerHTML = ""; }
+            let guilds = await get_guilds(cache=cache);
+            function servernameicon(name) {
+                return name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
+            }
+            let sdata = guilds.guilds;
+            for (let i of sdata) {
+                let atag = document.createElement("a")
+                atag.id = "servermain"
+                let gdl = i.permissions ? "/dash/" + i.id : "/dash/" + i.id + "/music";
+                atag.href = i.bot_joined ? gdl : "/invite?gid=" + encodeURIComponent(i.id);    
+                let shotname = servernameicon(i.name)
+                let name = i.name
+                let serverbox = document.createElement("div");
+                serverbox.id = "serverbox";
+
+                if (!i.icon) {
+                    let servertexticon = document.createElement("div");
+                    servertexticon.id = "servertexticon";
+                    const spanShotname = document.createElement("span");
+                    spanShotname.textContent = shotname;
+                    servertexticon.appendChild(spanShotname);
+                    serverbox.appendChild(servertexticon);
+                } else {
+                    let img = document.createElement("img");
+                    img.src = "https://cdn.discordapp.com/icons/" + i.id + "/" + i.icon + "?size=1024";
+                    img.alt = "";
+                    img.id = "servericon";
+                    serverbox.appendChild(img);
+                }
+                
+
+                const servernamebox = document.createElement("div");
+                servernamebox.className = "center";
+                servernamebox.id = "servernamebox";
+                const spanName = document.createElement("span");
+                spanName.id = "servername";
+                spanName.textContent = name;
+                servernamebox.appendChild(spanName);
+                
+                serverbox.appendChild(servernamebox);
+                atag.appendChild(serverbox);
+                if (sever_box != null) {
+                    sever_box.appendChild(atag);
+                } else {
+                    location.reload();
+                }
             }
         }
+        const buttons = document.getElementById('g_refresh');
+        buttons?.addEventListener('click', () => {
+            servers();
+        })
+        servers(true);
     </script>
 </Main>

@@ -7,7 +7,7 @@ if (window.req == undefined) {
 
 let rate_limit_mess = "you have been rate limited\nPlease wait and try again !";
 
-async function request(path, method = "GET", body = null) {
+async function request(path, cache=true, method = "GET", body = null) {
     let headers = {};
     let raw_body = body ? JSON.stringify(body) : null;
     if (body) {
@@ -17,7 +17,11 @@ async function request(path, method = "GET", body = null) {
     if (token) {
         headers["Authorization"] = "Bearer " + token;
     }
-    let rep = await fetch(window.API_ENDPOINT + path, {
+    let arg = "";
+    if (!cache) {
+        arg = "?cache=false"
+    }
+    let rep = await fetch(window.API_ENDPOINT + path + arg, {
         method: method,
         headers: headers,
         body: raw_body,
@@ -44,13 +48,10 @@ export async function logout() {
     await request('/logout');
 }
 
-async function cache_check_support(key, cache, new_req) {
-    let cache_data = load_cache(key);
-    if (cache_data && cache) {
-        return cache_data;
-    } else if (key in window.temp_cache) {
+async function cache_check_support(key, cache) {
+    if (key in window.temp_cache && cache) {
         return window.temp_cache[key];
-    } else if (key in window.req && !new_req) {
+    } else if (key in window.req && cache) {
         await waitForKey(window.temp_cache, key);
         return window.temp_cache[key];
     }
@@ -61,20 +62,13 @@ function save_cache(key, data) {
     window.temp_cache[key] = data;
 }
 
-function load_cache(key) {
-    if (key in temp_cache) {
-        return temp_cache[key];
-    }
-    return null;
-}
 
-
-export async function get_user(cache = true, new_req = false) {
-    let cache_data = await cache_check_support('user', cache, new_req);
+export async function get_user(cache = true) {
+    let cache_data = await cache_check_support('user', cache);
     if (cache_data) {
         return cache_data;
     }
-    let rep = await request('/@me');
+    let rep = await request('/@me', cache=cache);
     if (rep.status === 429) {
         alert(rate_limit_mess);
         throw Error("Rate Limit");
@@ -85,7 +79,7 @@ export async function get_user(cache = true, new_req = false) {
 }
 
 export async function get_user_status() {
-    let userinfo = await get_user(false);
+    let userinfo = await get_user();
     if (userinfo.status) {
         let user_display = userinfo.user.username + '#' + userinfo.user.discriminator;
         if (userinfo.user.discriminator * 1 == 0) {
@@ -101,7 +95,7 @@ export async function get_user_status() {
 }
 
 export async function check_login(cache = false) {
-    let user_data = await get_user(cache);
+    let user_data = await get_user();
     if (!user_data.status) {
         localStorage.clear();
         sessionStorage.clear();
@@ -109,12 +103,12 @@ export async function check_login(cache = false) {
     return user_data.status;
 }
 
-export async function get_guilds(cache = true, new_req = false) {
-    let cache_data = await cache_check_support('guilds', cache, new_req);
+export async function get_guilds(cache = true) {
+    let cache_data = await cache_check_support('guilds', cache);
     if (cache_data) {
         return cache_data;
     }
-    let rep = await request('/@me/guilds');
+    let rep = await request('/@me/guilds', cache=cache);
     if (rep.status === 429) {
         alert(rate_limit_mess);
         throw Error("Rate Limit");

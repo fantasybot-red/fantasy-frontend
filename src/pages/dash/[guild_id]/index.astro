@@ -11,7 +11,7 @@ import BackBtn from "../../../components/back_btn.astro";
         import { get_guild, url_guild_id } from "../../../js/login_modun.js";
         let guild = await get_guild(url_guild_id());
         if (guild.bot_joined && !guild.permissions) {
-            location.replace("/dash/");
+            location.replace("/dash");
         } else if (!guild.bot_joined && guild.permissions) {
             location.replace("/invite?gid=" + guild.id);
         }

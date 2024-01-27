@@ -37,5 +37,6 @@ export default defineConfig({
   vite: vite_config,
   adapter: node({
     mode: 'middleware',
-  })
+  }),
+  trailingSlash: "never"
 });

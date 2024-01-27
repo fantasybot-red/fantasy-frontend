@@ -1,9 +1,12 @@
 ---
 import Main from '../layouts/main.astro';
+import ControlBar from '../components/control_bar.astro';
 ---
 <Main head_title="Dashboard">
     <link rel="stylesheet" href="/assets/dash.css"/>
-    <div style="width: 100%;"><button id="g_refresh">Refresh</button></div>
+    <ControlBar>
+        <button id="g_refresh">Refresh Guilds</button>
+    </ControlBar>
     <div id="sever">
     </div>
     <script>
@@ -18,12 +21,11 @@ import Main from '../layouts/main.astro';
             function servernameicon(name) {
                 return name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
             }
-            let sdata = guilds.guilds;
+            let sdata: Array<any> = Object.values(guilds.guilds);
             for (let i of sdata) {
                 let atag = document.createElement("a")
                 atag.id = "servermain"
-                let gdl = i.permissions ? "/dash/" + i.id : "/dash/" + i.id + "/music";
-                atag.href = i.bot_joined ? gdl : "/invite?gid=" + encodeURIComponent(i.id);    
+                atag.href = i.permissions ? "/dash/" + i.id : "/dash/" + i.id + "/music";    
                 let shotname = servernameicon(i.name)
                 let name = i.name
                 let serverbox = document.createElement("div");
@@ -38,8 +40,9 @@ import Main from '../layouts/main.astro';
                     serverbox.appendChild(servertexticon);
                 } else {
                     let img = document.createElement("img");
-                    img.src = "https://cdn.discordapp.com/icons/" + i.id + "/" + i.icon + "?size=1024";
+                    img.src = "https://cdn.discordapp.com/icons/" + i.id + "/" + i.icon + ".png";
                     img.alt = "";
+                    img.loading = "lazy";
                     img.id = "servericon";
                     serverbox.appendChild(img);
                 }

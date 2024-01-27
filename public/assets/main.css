@@ -44,6 +44,7 @@ body {
     top: 15px;
     margin-right: 15px;
     margin-left: 15px;
+    margin-bottom: 30px;
     border-radius: 15px;
     background-color: #4f4f4f !important;
     transform: scale(1);
@@ -103,4 +104,23 @@ body {
 ::-webkit-scrollbar-thumb {
     border-radius: 999999px;
     background-color: #555;
+}
+
+.controlbar {
+    width: -webkit-fill-available;
+    margin: 16px;
+    background-color: #4f4f4f;
+    padding: 5px;
+    border-radius: 15px;
+}
+.controlbar button {
+    background-color: rgb(100, 100, 100);
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 15px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: unset;
+    font-size: large;
 }

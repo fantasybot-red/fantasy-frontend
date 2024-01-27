@@ -1,6 +1,26 @@
 ---
 import Main from "../../../layouts/main.astro";
+import ControlBar from "../../../components/control_bar.astro";
+import BackBtn from "../../../components/back_btn.astro";
 ---
 <Main head_title="Dashboard">
-    <h1>Welcome to Dashboard</h1>
+    <ControlBar>
+        <BackBtn>Back</BackBtn>
+    </ControlBar>
+    <script>
+        import { get_guild, url_guild_id } from "../../../js/login_modun.js";
+        let guild = await get_guild(url_guild_id());
+        if (guild.bot_joined && !guild.permissions) {
+            location.replace("/dash/");
+        } else if (!guild.bot_joined && guild.permissions) {
+            location.replace("/invite?gid=" + guild.id);
+        }
+        let controlbar = document.getElementsByClassName("controlbar");
+        for (let i of controlbar) { 
+            let espam = document.createElement("span");
+            espam.innerText = guild.name;
+            i.appendChild(espam);
+        }
+    </script>
+    <h1 class="center">Welcome to Dashboard</h1>
 </Main>

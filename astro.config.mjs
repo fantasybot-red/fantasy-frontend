@@ -24,7 +24,8 @@ let vite_config = {
       external: [
         /^node:.*/
       ]
-    }
+    },
+    minify: 'terser'
   }
 };
 

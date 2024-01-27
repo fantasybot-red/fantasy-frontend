@@ -1,8 +1,13 @@
 ---
 import Main from "../../../layouts/main.astro";
+import ControlBar from "../../../components/control_bar.astro";
+import BackBtn from "../../../components/back_btn.astro";
 ---
 
 <Main head_title="Dashboard">
+    <ControlBar>
+        <BackBtn>Back</BackBtn>
+    </ControlBar>
     <link rel="stylesheet" href="/assets/music.css"/>
     <div id="m-root">
         <div class="music-player">
@@ -22,13 +27,6 @@ import Main from "../../../layouts/main.astro";
                     <div class="btn _previous"></div>
                     <div class="btn _pause"></div>
                     <div class="btn _next"></div>
-                    <div class="btn _timeline">
-                        <span class="current-time">2:32</span>
-                        <span class="timescope">
-                            <span class="timescope-dot"></span>
-                        </span>
-                        <span class="end-time">4:00</span>
-                    </div>
                 </div>
             </div>
             <ul class="player-list">
@@ -75,4 +73,11 @@ import Main from "../../../layouts/main.astro";
             </ul>
         </div>
     </div>
+    <script>
+        import { get_guild, url_guild_id } from "../../../js/login_modun.js";
+        let guild = await get_guild(url_guild_id());
+        if (!guild.bot_joined && guild.permissions) {
+            location.replace("/invite?gid=" + guild.id);
+        }
+    </script>
 </Main>

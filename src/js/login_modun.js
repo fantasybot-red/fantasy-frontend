@@ -104,16 +104,33 @@ export async function check_login(cache = false) {
 }
 
 export async function get_guilds(cache = true) {
-    let cache_data = await cache_check_support('guilds', cache);
-    if (cache_data) {
-        return cache_data;
-    }
     let rep = await request('/@me/guilds', cache=cache);
     if (rep.status === 429) {
         alert(rate_limit_mess);
         throw Error("Rate Limit");
     }
     let data = await rep.json();
-    save_cache('guilds', data);
     return data;
+}
+
+
+export async function get_guild(gid, cache = true) {
+    let rep = await request('/guild/'+gid, cache=cache);
+    if (rep.status === 429) {
+        alert(rate_limit_mess);
+        throw Error("Rate Limit");
+    }
+    let data = await rep.json();
+    if (!data.status) {
+        location.replace("/dash");
+    }
+    return data.data;
+}
+
+export function url_guild_id() {
+    if (!location.pathname.startsWith("/dash/")) {
+        return
+    }
+    let urlsp = location.pathname.split("/");
+    return urlsp[2];
 }

@@ -1,0 +1,4 @@
+---
+let back = Astro.url.pathname.split("/").slice(0, -1).join("/") || "/dash"
+---
+<a type="button" id="back-l" href={back}><button><slot /></button></a>

@@ -1,29 +1,29 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
-import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
+import obfuscator from 'rollup-plugin-obfuscator';
 
 let obfuscator_config = {
   identifierNamesGenerator: 'mangled',
   stringArrayCallsTransform: true,
   stringArrayEncoding: ['rc4'],
-  deadCodeInjection: true
+  deadCodeInjection: false
 };
 
-let obfuscator = obfuscatorPlugin({
-  include: ["**/*.js", /.*\/hoisted\.js.*/],
-  exclude: [],
-  apply: "build",
-  debugger: true,
-  options: obfuscator_config
+let obfuscator_plug = obfuscator({
+  include: ["**/*.js"],
+  exclude: [/manifest/],
+  options: obfuscator_config,
+  global: true
 })
 
 let vite_config = {
-  plugins: [obfuscator],
   build: {
     rollupOptions: {
       external: [
-        /^node:.*/
-      ]
+        /^node:.*/,
+        /sharp\.js/
+      ],
+      plugins: [obfuscator_plug]
     },
     minify: 'terser'
   }

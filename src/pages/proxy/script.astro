@@ -13,7 +13,7 @@ try {
 if (url_obj.href.includes(Astro.url.hostname)) {
     return new Response("Realy try to make a loop ?", { status: 400 });
 }
-let data = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url_obj.href)}`);
+let data = await fetch(url_obj.href);
 if (!ctr.test(data.headers.get("Content-Type") || "")) {
     return new Response("This is not a script", { status: 400 });
 }

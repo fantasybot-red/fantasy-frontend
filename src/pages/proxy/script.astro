@@ -10,7 +10,7 @@ try {
 } catch (error) {
     return Astro.redirect("/");
 }
-if (url_obj.hostname == Astro.url.hostname) {
+if (url_obj.href.includes(Astro.url.hostname)) {
     return new Response("Realy try to make a loop ?", { status: 400 });
 }
 let data = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url_obj.href)}`);

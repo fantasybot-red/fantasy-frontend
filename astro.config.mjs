@@ -7,7 +7,7 @@ let obfuscator_config = {
   identifierNamesGenerator: 'mangled',
   stringArrayCallsTransform: true,
   stringArrayEncoding: ['rc4'],
-  deadCodeInjection: false
+  deadCodeInjection: true
 };
 
 let obfuscator_plug = obfuscator({

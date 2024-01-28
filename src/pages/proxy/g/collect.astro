@@ -1,0 +1,8 @@
+---
+let url_m = Astro.url;
+url_m.protocol = "https:"
+url_m.hostname = "www.google-analytics.com";
+url_m.pathname = "/g/collect";
+let data = await fetch(url_m.href);
+return data;
+---

@@ -1,0 +1,12 @@
+---
+let path = Astro.url.searchParams.get("u");
+if (!path) {
+    return Astro.redirect("/");
+}
+let ctr = /^(application|text)\/(javascript|x-javascript).*/i;
+let data = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(path)}`);
+if (!ctr.test(data.headers.get("Content-Type") || "")) {
+    return new Response("This is not a script", { status: 400 });
+}
+return data;
+---

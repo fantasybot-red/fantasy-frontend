@@ -6,6 +6,7 @@ if (!head_title) {
 import Env_Script from "../components/env_script.astro";
 import Loading from "../components/loading.astro";
 import Nav_Bar from "../components/nav_bar.astro";
+import Analytics from "../components/analytics.astro";
 ---
 
 <!doctype html>
@@ -23,24 +24,7 @@ import Nav_Bar from "../components/nav_bar.astro";
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         />
-        <script
-            is:inline
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-YS5RWDRN7N"
-        ></script>
-        <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-YS5RWDRN7N");
-        </script>
-        <script
-            is:inline
-            src="https://js.sentry-cdn.com/b0b31aaf38de4cfaa4e02a717b357fac.min.js"
-            crossorigin="anonymous"></script>
+        <Analytics/>
         <title>{head_title}</title>
         <noscript>
             <title>Fantasy Security</title>
@@ -55,7 +39,6 @@ import Nav_Bar from "../components/nav_bar.astro";
                 <slot />
             </div>
         </div>
-        
     </body>
     <noscript>
         <div

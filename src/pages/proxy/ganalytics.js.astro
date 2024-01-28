@@ -1,0 +1,4 @@
+---
+let data = await fetch(`https://www.googletagmanager.com/gtag/js?id=G-YS5RWDRN7N`);
+return new Response(await data.text(), { status: 200, headers: { "Content-Type": "application/javascript" } });
+---

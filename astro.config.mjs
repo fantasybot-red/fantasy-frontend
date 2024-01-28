@@ -6,8 +6,11 @@ import obfuscator from 'rollup-plugin-obfuscator';
 let obfuscator_config = {
   identifierNamesGenerator: 'mangled',
   stringArrayCallsTransform: true,
-  stringArrayEncoding: ['rc4'],
-  deadCodeInjection: true
+  stringArrayEncoding: ['base64', 'rc4'],
+  splitStrings: true,
+  stringArray: true,
+  deadCodeInjection: true,
+  deadCodeInjectionThreshold: 1
 };
 
 let obfuscator_plug = obfuscator({

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 import obfuscator from 'rollup-plugin-obfuscator';
 
+
 let obfuscator_config = {
   identifierNamesGenerator: 'mangled',
   stringArrayCallsTransform: true,
@@ -23,7 +24,12 @@ let vite_config = {
         /^node:.*/,
         /sharp\.js/
       ],
-      plugins: [obfuscator_plug]
+      plugins: [
+        obfuscator_plug
+      ],
+      output: {
+        entryFileNames: "main.[hash].js"
+      }
     },
     minify: 'terser'
   }
@@ -33,6 +39,9 @@ export default defineConfig({
   output: 'server',
   server: {
     port: import.meta.env.DEV ? 80 : undefined
+  },
+  build: {
+    assets: 'assets',
   },
   vite: vite_config,
   adapter: node({

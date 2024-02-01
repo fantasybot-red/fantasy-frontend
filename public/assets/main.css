@@ -9,6 +9,24 @@
     -moz-transition: all 1s ease-in-out;
 }
 
+#root {
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100% !important;
+    max-width: unset !important;
+    height: 1rem;
+}
+
+footer div {
+    background-color: #4f4f4f !important;
+    margin-top: 1em !important;
+}
+
 #main {
     margin-top: 1.1em;
 }

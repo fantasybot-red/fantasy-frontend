@@ -4,7 +4,9 @@ head_title: Privacy Policy
 ---
 # Privacy Policy
 
-Last updated: January 12, 2024
+Last updated: February 1, 2024
+
+By using the Services, you consent to the Terms and Service and Privacy Policy.
 
 # Interpretation and Definitions
 

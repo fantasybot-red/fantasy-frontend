@@ -6,13 +6,14 @@ if (!head_title) {
 import Env_Script from "../components/env_script.astro";
 import Loading from "../components/loading.astro";
 import Nav_Bar from "../components/nav_bar.astro";
+import Footer_Bar from "../components/footer_bar.astro";
 import Analytics from "../components/analytics.astro";
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+            <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -38,12 +39,11 @@ import Analytics from "../components/analytics.astro";
             <div id="main">
                 <slot />
             </div>
+            <Footer_Bar />
         </div>
     </body>
     <noscript>
-        <div
-            style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px"
-        >
+        <div style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px">
             <center><h1>Turn on JavaScript</h1></center>
         </div>
     </noscript>

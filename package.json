@@ -14,7 +14,6 @@
     "@ayco/astro-resume": "^0.4.0",
     "@hotjar/browser": "^1.0.9",
     "astro": "^4.0.8",
-    "encryptjs": "^2.0.0",
     "javascript-obfuscator": "^4.1.0",
     "rollup-plugin-obfuscator": "github:fantasybot-red/rollup-plugin-obfuscator",
     "terser": "^5.27.0"

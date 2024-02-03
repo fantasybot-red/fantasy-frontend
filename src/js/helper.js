@@ -278,3 +278,6 @@ const siteId = 3849480;
 const hotjarVersion = 6;
 
 Hotjar.init(siteId, hotjarVersion);
+let sentry = docment.createElement("script");
+sentry.src = "https://js.sentry-cdn.com/b0b31aaf38de4cfaa4e02a717b357fac.min.js";
+document.head.appendChild(sentry);

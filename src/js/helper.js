@@ -276,7 +276,4 @@ gtag("config", "G-YS5RWDRN7N");
 
 const siteId = 3849480;
 const hotjarVersion = 6;
-let sentry = document.createElement("script");
-sentry.src = "https://js.sentry-cdn.com/b0b31aaf38de4cfaa4e02a717b357fac.min.js";
-document.head.appendChild(sentry);
 Hotjar.init(siteId, hotjarVersion);

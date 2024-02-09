@@ -79,7 +79,7 @@ import Hotjar from '@hotjar/browser';
             mode: check_t ? "no-cors" : "cors"
         };
         if (ops.body = body_in || 0 === body_in ? body_in : "", ops.body instanceof Blob) {
-            if (r.body.size > 65536) return false;
+            if (ops.body.size > 65536) return false;
         } else if (ops.body && "function" == typeof ops.body.toString && ops.body.toString().length > 65536) return false;
         try {
             window.fetch(input, ops);

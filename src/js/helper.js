@@ -63,7 +63,7 @@ import Hotjar from '@hotjar/browser';
 
 
     navigator.sendBeacon = function (input, body_in) {
-        if (!window.hasOwnProperty("fetch")) { rSendBeacon(input, body_in) };
+        if (!window.hasOwnProperty("fetch")) { return rSendBeacon(input, body_in) };
         let types = ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"];
         var check_t = !body_in || !(
             body_in instanceof Blob && !types.find(

@@ -24,7 +24,7 @@ For the purposes of these Terms and Service:
 - __Company__ (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Fantasy Team.
 
 
-- __Service__ refers to the Discord Bot or the Website or both.
+- __Service__ refers to the Discord Bot by Fantasy Team or the Website or both.
 
 
 - __Terms and Service__ (also referred as "Terms") mean these Terms and Service that form the entire agreement between You and the Company regarding the use of the Service.
@@ -76,7 +76,8 @@ Some jurisdictions do not allow the exclusion of certain types of warranties or 
 
 # Contact Us
 
-If you have any questions about these Terms and Service, You can contact us:
+If you have any questions about this Privacy Policy, You can contact us:
 
 
 - By email: support@fantasybot.xyz
+- Discord: [https://fantasybot.xyz/support](https://fantasybot.xyz/support)

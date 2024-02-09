@@ -1,5 +1,4 @@
 ---
-import Serialize from "@ayco/astro-resume";
 import Env_Script from "../components/env_script.astro";
 var API_ENDPOINT = import.meta.env.API_ENDPOINT;
 const url = Astro.url.searchParams.get("p") || "/dash";
@@ -33,12 +32,11 @@ if (code_pram && state_pram) {
 let oauth_url = `https://discord.com/oauth2/authorize?client_id=931353470353674291&response_type=code&redirect_uri=${
     Astro.url.origin
 }/login&scope=identify+guilds&state=${btoa(path_redirect)}`;
-let data_send = {
+let data_send = JSON.stringify({
     path_redirect_state,
     token_return,
     oauth_url,
-};
-export type Data = typeof data_send;
+});
 ---
 
 <!doctype html>
@@ -50,12 +48,11 @@ export type Data = typeof data_send;
         <title>Login</title>
     </head>
     <body>
-        <Env_Script/>
-        <Serialize id="data-json" data={data_send} />
+        <Env_Script />
+        <script type="text/json" set:html={ data_send } is:inline></script>
         <script>
             import { check_login } from "../js/login_modun.js";
-            import { deserialize } from "@ayco/astro-resume";
-            const data = deserialize("data-json");
+            const data = JSON.parse(document.querySelector("script[type='text/json']")?.innerHTML || "{}");
             if (data.token_return) {
                 localStorage.setItem("TOKEN", data.token_return);
                 location.replace(data.path_redirect_state);

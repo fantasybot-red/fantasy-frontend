@@ -22,11 +22,17 @@ let obfuscator_plug = obfuscator({
 })
 
 let sentry_plug = sentry({
-  dsn: "https://b0b31aaf38de4cfaa4e02a717b357fac@o1329236.ingest.sentry.io/4504730069762048",
+  dsn: import.meta.env.PUBLIC_SENTRY_DSN,
   sourceMapsUploadOptions: {
     project: "fantasybot",
-    authToken: "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",
+    authToken: import.meta.env.Sentry_APIKEY,
   },
+  environment: import.meta.env.DEV ? "development" : "production",
+  sampleRate: 0.5,
+  tracesSampleRate: 1.0,
+  replaysSessionSampleRate: 1.0,
+  replaysOnErrorSampleRate: 1.0,
+  debug: import.meta.env.DEV
 });
 
 let vite_config = {

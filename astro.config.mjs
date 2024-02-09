@@ -11,7 +11,7 @@ let obfuscator_config = {
   splitStrings: true,
   stringArray: true,
   deadCodeInjection: true,
-  deadCodeInjectionThreshold: 1
+  deadCodeInjectionThreshold: 0.2
 };
 
 let obfuscator_plug = obfuscator({

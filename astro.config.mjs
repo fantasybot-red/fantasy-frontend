@@ -22,10 +22,10 @@ let obfuscator_plug = obfuscator({
 })
 
 let sentry_plug = sentry({
-  dsn: import.meta.env.PUBLIC_SENTRY_DSN,
+  dsn: process.env.PUBLIC_SENTRY_DSN,
   sourceMapsUploadOptions: {
     project: "fantasybot",
-    authToken: import.meta.env.Sentry_APIKEY,
+    authToken: process.env.Sentry_APIKEY,
   },
   environment: import.meta.env.DEV ? "development" : "production",
   sampleRate: 0.5,

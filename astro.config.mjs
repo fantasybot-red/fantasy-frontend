@@ -2,6 +2,9 @@ import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 import obfuscator from 'rollup-plugin-obfuscator';
 import sentry from "@sentry/astro";
+import { loadEnv } from "vite";
+
+const { Sentry_APIKEY, PUBLIC_SENTRY_DSN } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 
 let obfuscator_config = {
@@ -20,17 +23,17 @@ let obfuscator_plug = obfuscator({
   options: obfuscator_config,
   global: true
 })
-
 let sentry_plug = sentry({
-  dsn: process.env.PUBLIC_SENTRY_DSN,
+  dsn: PUBLIC_SENTRY_DSN,
   sourceMapsUploadOptions: {
     project: "fantasybot",
-    authToken: process.env.Sentry_APIKEY,
+    authToken: Sentry_APIKEY,
+    telemetry: true
   },
   environment: import.meta.env.DEV ? "development" : "production",
   sampleRate: 0.5,
   tracesSampleRate: 1.0,
-  replaysSessionSampleRate: 1.0,
+  replaysSessionSampleRate: 0.5,
   replaysOnErrorSampleRate: 1.0,
   debug: import.meta.env.DEV
 });

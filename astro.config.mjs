@@ -31,10 +31,10 @@ let sentry_plug = sentry({
     telemetry: true
   },
   environment: import.meta.env.DEV ? "development" : "production",
-  sampleRate: 0.5,
+  sampleRate: 1.0,
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 0.5,
-  replaysOnErrorSampleRate: 1.0,
+  replaysOnErrorSampleRate: 0.5,
   debug: import.meta.env.DEV
 });
 

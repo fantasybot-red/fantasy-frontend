@@ -1,6 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
-let is_wordpress = currentPath.endsWith(".php") || currentPath.startsWith("/wp-");
+let is_wordpress = currentPath.toLocaleLowerCase().endsWith(".php") || currentPath.toLocaleLowerCase().startsWith("/wp-");
 if (is_wordpress) {
     let headers = { 
         "Content-Type": "text/plain; charset=utf-8"

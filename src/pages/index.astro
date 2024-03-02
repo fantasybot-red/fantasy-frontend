@@ -1,20 +1,54 @@
 ---
-import Main from '../layouts/main.astro';
+import Main from "../layouts/main.astro";
 ---
 
 <Main head_title="hi">
-	<div class="center">
-		<h1>Welcome to Fantasy website</h1>
+	<div class="head1">
+		<div class="main-content">
+			<h1 class="title">Welcome to Fantasy website</h1>
+		</div>
+		<div class="canvas-main">
+			<canvas id="canvas3d"></canvas>
+		</div>
 	</div>
-	<!-- <div class="dropdown-center" data-bs-theme="dark">
-		<button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-		  Dropdown button
-		</button>
-		<ul class="dropdown-menu">
-		  <li><a class="dropdown-item" href="#">Action</a></li>
-		  <li><a class="dropdown-item" href="#">Another action</a></li>
-		  <li><a class="dropdown-item" href="#">Something else here</a></li>
-		</ul>
-	  </div>
-	-->
+	<script>
+		import { Application } from "@splinetool/runtime";
+		const canvas = document.getElementById("canvas3d");
+		const app = new Application(canvas);
+		app.load(
+			"https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode",
+		);
+	</script>
+	<style is:inline>
+
+		@media screen and (max-width: 860px) {
+
+			.canvas-main {
+				display: none !important;
+			}
+
+			.main-content {
+				width: 100% !important;
+				text-align: center !important;
+				display: block !important;
+			}
+		}
+		.head1 {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+		}
+		.canvas-main {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-self: center;
+		}
+		.main-content {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-self: center;
+		}
+	</style>
 </Main>

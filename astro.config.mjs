@@ -28,14 +28,14 @@ let sentry_plug = sentry({
   sourceMapsUploadOptions: {
     project: "fantasybot",
     authToken: Sentry_APIKEY,
-    telemetry: true
+    telemetry: false
   },
   environment: import.meta.env.DEV ? "development" : "production",
   sampleRate: 1.0,
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 0.5,
   replaysOnErrorSampleRate: 0.5,
-  debug: import.meta.env.DEV
+  debug: import.meta.env.DEV,
 });
 
 let vite_config = {

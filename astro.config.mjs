@@ -19,7 +19,7 @@ let obfuscator_config = {
 
 let obfuscator_plug = obfuscator({
   include: ["**/*.js"],
-  exclude: [/manifest/],
+  exclude: [/server/],
   options: obfuscator_config,
   global: true
 })

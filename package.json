@@ -16,7 +16,6 @@
     "@splinetool/runtime": "^1.0.55",
     "astro": "^4.0.8",
     "javascript-obfuscator": "^4.1.0",
-    "rollup-plugin-obfuscator": "github:fantasybot-red/rollup-plugin-obfuscator",
     "terser": "^5.27.0"
   }
 }

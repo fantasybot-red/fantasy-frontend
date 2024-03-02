@@ -1,28 +1,11 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
-import obfuscator from 'rollup-plugin-obfuscator';
 import sentry from "@sentry/astro";
 import { loadEnv } from "vite";
 
 const { Sentry_APIKEY, PUBLIC_SENTRY_DSN } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 
-let obfuscator_config = {
-  identifierNamesGenerator: 'mangled',
-  stringArrayCallsTransform: true,
-  stringArrayEncoding: ['base64', 'rc4'],
-  splitStrings: true,
-  stringArray: true,
-  deadCodeInjection: true,
-  deadCodeInjectionThreshold: 0.2
-};
-
-let obfuscator_plug = obfuscator({
-  include: ["**/*.js"],
-exclude: [/server/, /physics\..*\.js/],
-  options: obfuscator_config,
-  global: true
-})
 let sentry_plug = sentry({
   dsn: PUBLIC_SENTRY_DSN,
   sourceMapsUploadOptions: {
@@ -41,13 +24,6 @@ let sentry_plug = sentry({
 let vite_config = {
   build: {
     rollupOptions: {
-      external: [
-        /^node:.*/,
-        /sharp\.js/
-      ],
-      plugins: [
-        obfuscator_plug
-      ],
       output: {
         entryFileNames: "main.[hash].js"
       }

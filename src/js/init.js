@@ -1,5 +1,7 @@
 import { get_user_status } from "../js/login_modun.js";
 
+const event_loading = new Event("loaded")
+
 async function end_load() {
     let load = document.getElementById("loading");
     let root = document.getElementById("root");
@@ -9,6 +11,7 @@ async function end_load() {
     root.removeAttribute("hidden");
     await new Promise(r => setTimeout(r, 100));
     root.style.opacity = "1";
+    window.dispatchEvent(event_loading);
     await new Promise(r => setTimeout(r, 1000));
     root.removeAttribute("style");
     root.removeAttribute("class");

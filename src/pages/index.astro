@@ -5,39 +5,61 @@ import Main from "../layouts/main.astro";
 <Main head_title="hi">
 	<div class="head1">
 		<div class="main-content">
-			<h1 class="title">Welcome to Fantasy website</h1>
+			<h1 class="title">
+				The Ultimate <span class="typed"></span> bot for your server
+			</h1>
+			<span>Make your server more easier by inviting Fantasy</span>
+			<div class="gbtn">
+				<button class="btn btn-lg btn-primary"><a href="/invite" id="invite-btn">Invite</a></button>
+				<button class="btn btn-lg btn-outline-secondary"><a href="/support" id="support-btn">Join Server</a></button>
+			</div>
 		</div>
 		<div class="canvas-main">
 			<canvas id="canvas3d"></canvas>
 		</div>
 	</div>
 	<script>
-		import { Application } from '@splinetool/runtime';
-		
+		import Typed from "typed.js";
+		import { Application } from "@splinetool/runtime";
+
 		const canvas = document.getElementById("canvas3d");
 		const app = new Application(canvas);
 		app.load(
 			"https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode",
 		);
+		let sting_list = [
+			"Music",
+			"Moderation",
+			"Fun",
+			"Temp Voice",
+			"AI",
+			"Utilitys",
+			"Multipurpose",
+		];
+		const typed = new Typed(".typed", {
+			strings: sting_list,
+			typeSpeed: 200,
+			backSpeed: 100,
+			backDelay: 2000,
+			cursorChar: "",
+			loop: true,
+		});
 	</script>
-	<style is:inline>
-
-		@media screen and (max-width: 860px) {
-
+	<style>
+		@media screen and (max-width: 1010px) {
 			.canvas-main {
 				display: none !important;
 			}
 
 			.main-content {
 				width: 100% !important;
-				text-align: center !important;
-				display: block !important;
 			}
 		}
 		.head1 {
 			display: flex;
 			flex-direction: row;
 			align-items: stretch;
+			height: 500px;
 		}
 		.canvas-main {
 			width: 50%;
@@ -48,8 +70,20 @@ import Main from "../layouts/main.astro";
 		.main-content {
 			width: 50%;
 			display: flex;
+			align-items: center;
+			flex-direction: column;
 			justify-content: center;
 			align-self: center;
+			text-align: center;
+		}
+		.typed {
+			color: #f53344 !important;
+		}
+		#invite-btn {
+			color: white !important;
+		}
+		.gbtn {
+			margin-top: 10px;
 		}
 	</style>
 </Main>

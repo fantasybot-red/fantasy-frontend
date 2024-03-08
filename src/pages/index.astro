@@ -4,6 +4,7 @@ import Main from "../layouts/main.astro";
 
 <Main head_title="hi">
 	<link rel="prefetch" href="https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode" />
+	<link rel="stylesheet" href="/assets/home.css" />
 	<div class="head1">
 		<div class="main-content">
 			<h1 class="title">
@@ -19,120 +20,5 @@ import Main from "../layouts/main.astro";
 			<canvas id="canvas3d"></canvas>
 		</div>
 	</div>
-	<script>
-		import Typed from "typed.js";
-		import { Application } from "@splinetool/runtime";
-		import * as THREE from 'three'
-		import NET from "vanta/dist/vanta.net.min";
-
-		const canvas = document.getElementById("canvas3d");
-		const app = new Application(canvas);
-		let m_data = await fetch("https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode");
-		let m_raw = await m_data.arrayBuffer();
-		app.start(m_raw);
-		let vanta = NET({
-			el: ".head1",
-			mouseControls: true,
-			touchControls: true,
-			gyroControls: false,
-			scale: 1.0,
-			scaleMobile: 0.25,
-			backgroundColor: "#1a1a1a",
-      		showDots: false,
-      		THREE: THREE
-		});
-		let sting_list = [
-			"Music",
-			"Moderation",
-			"Fun",
-			"Temp Voice",
-			"AI",
-			"Utilitys",
-			"Multipurpose",
-		];
-		const typed = new Typed(".typed", {
-			strings: sting_list,
-			typeSpeed: 200,
-			backSpeed: 100,
-			backDelay: 2000,
-			cursorChar: "",
-			loop: true,
-		});
-		let last_is_big = window.innerWidth >= 1010;
-		window.addEventListener("resize", () => {
-			if (vanta.scene.children && window.innerWidth < 1010) {
-				vanta.restart();
-			}
-			if ((window.innerWidth >= 1010) && !last_is_big) {
-				app.play();
-				app.start(m_raw);
-				if (vanta.scene.children) {
-					vanta.scene.clear();
-				}
-				last_is_big = true;
-			} else if ((window.innerWidth < 1010) && last_is_big) {
-				app.stop();
-				vanta.restart();
-				last_is_big = false;
-			}
-		});
-		window.addEventListener("loaded", () => {
-			vanta.resize();
-			if (window.innerWidth >= 1010) {
-				if (vanta.scene) {
-					vanta.scene.clear();
-				}
-			} else {
-				app.stop();
-			}
-		})
-	</script>
-	<style is:global>
-		@media screen and (max-width: 1010px) {
-			.canvas-main {
-				display: none !important;
-			}
-
-			.main-content {
-				width: 100% !important;
-			}
-
-			.vanta-canvas {
-				visibility: visible !important;
-			}
-		}
-		.head1 {
-			display: flex;
-			flex-direction: row;
-			align-items: stretch;
-			height: 80vh;
-		}
-		.canvas-main {
-			width: 50%;
-			display: flex;
-			justify-content: center;
-			align-self: center;
-		}
-		.main-content {
-			width: 50%;
-			display: flex;
-			align-items: center;
-			flex-direction: column;
-			justify-content: center;
-			align-self: center;
-			text-align: center;
-		}
-		.typed {
-			color: #ff1b2e !important;
-		}
-		#invite-btn {
-			color: white !important;
-		}
-		.gbtn {
-			margin-top: 10px;
-		}
-		.vanta-canvas {
-			filter: blur(3px);
-		}
-	</style>
+	<script src="../js/home.js"/>
 </Main>

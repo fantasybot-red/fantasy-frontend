@@ -3,6 +3,7 @@ import Main from "../layouts/main.astro";
 ---
 
 <Main head_title="hi">
+	<link rel="prefetch" href="https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode" />
 	<div class="head1">
 		<div class="main-content">
 			<h1 class="title">
@@ -26,9 +27,20 @@ import Main from "../layouts/main.astro";
 
 		const canvas = document.getElementById("canvas3d");
 		const app = new Application(canvas);
-		app.load(
-			"https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode",
-		);
+		let m_data = await fetch("https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode");
+		let m_raw = await m_data.arrayBuffer();
+		app.start(m_raw);
+		let vanta = NET({
+			el: ".head1",
+			mouseControls: true,
+			touchControls: true,
+			gyroControls: false,
+			scale: 1.0,
+			scaleMobile: 0.25,
+			backgroundColor: "#1a1a1a",
+      		showDots: false,
+      		THREE: THREE
+		});
 		let sting_list = [
 			"Music",
 			"Moderation",
@@ -46,20 +58,33 @@ import Main from "../layouts/main.astro";
 			cursorChar: "",
 			loop: true,
 		});
-		let vanta = NET({
-			el: ".head1",
-			mouseControls: true,
-			touchControls: true,
-			gyroControls: false,
-			scale: 1.00,
-			scaleMobile: 1.00,
-			color: 16727937,
-			backgroundColor: "#1a1a1a",
-			spacing: 16.00,
-      		THREE: THREE
+		let last_is_big = window.innerWidth >= 1010;
+		window.addEventListener("resize", () => {
+			if (vanta.scene.children && window.innerWidth < 1010) {
+				vanta.restart();
+			}
+			if ((window.innerWidth >= 1010) && !last_is_big) {
+				app.play();
+				app.start(m_raw);
+				if (vanta.scene.children) {
+					vanta.scene.clear();
+				}
+				last_is_big = true;
+			} else if ((window.innerWidth < 1010) && last_is_big) {
+				app.stop();
+				vanta.restart();
+				last_is_big = false;
+			}
 		});
 		window.addEventListener("loaded", () => {
 			vanta.resize();
+			if (window.innerWidth >= 1010) {
+				if (vanta.scene) {
+					vanta.scene.clear();
+				}
+			} else {
+				app.stop();
+			}
 		})
 	</script>
 	<style is:global>
@@ -80,7 +105,7 @@ import Main from "../layouts/main.astro";
 			display: flex;
 			flex-direction: row;
 			align-items: stretch;
-			height: 500px;
+			height: 80vh;
 		}
 		.canvas-main {
 			width: 50%;
@@ -98,7 +123,7 @@ import Main from "../layouts/main.astro";
 			text-align: center;
 		}
 		.typed {
-			color: #f53344 !important;
+			color: #ff1b2e !important;
 		}
 		#invite-btn {
 			color: white !important;
@@ -108,7 +133,6 @@ import Main from "../layouts/main.astro";
 		}
 		.vanta-canvas {
 			filter: blur(3px);
-			visibility: hidden;
 		}
 	</style>
 </Main>

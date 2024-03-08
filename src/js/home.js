@@ -5,7 +5,7 @@ import NET from "vanta/dist/vanta.net.min";
 
 const canvas = document.getElementById("canvas3d");
 const app = new Application(canvas);
-let m_data = await fetch("https://prod.spline.design/rMgTUH-mhmqsg0iP/scene.splinecode");
+let m_data = await fetch("/assets/scene.splinecode");
 let m_raw = await m_data.arrayBuffer();
 app.start(m_raw); 
 let vanta = NET({
@@ -16,7 +16,7 @@ let vanta = NET({
     scale: 1.0,
     scaleMobile: 0.25,
     backgroundColor: "#1a1a1a",
-    color: "#FF0000",
+    color: "#ffffff",
     showDots: false,
     THREE: THREE
 });

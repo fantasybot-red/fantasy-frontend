@@ -8,70 +8,93 @@ import BackBtn from "../../../components/back_btn.astro";
     <ControlBar>
         <BackBtn>Back</BackBtn>
     </ControlBar>
-    <link rel="stylesheet" href="/assets/music.css"/>
-    <div id="m-root">
-        <div class="music-player">
-            <div class="player-main">
-                <div class="main-current">
-                    <div class="current-keyvisual">
-                        <img
-                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-photo.png"
-                        />
-                    </div>
-                    <div class="current-info">
-                        <h1>Blame</h1>
-                        <p>KYLE</p>
-                    </div>
-                </div>
-                <div class="main-control">
-                    <div class="btn _previous"></div>
-                    <div class="btn _pause"></div>
-                    <div class="btn _next"></div>
-                </div>
+    <div class="player-hub">
+        <div class="player">
+            <h1>Welcome to Music</h1>
+        </div>
+        <div class="queue">
+            <div id="queue-items">
+                <h1>Song Name</h1>
             </div>
-            <ul class="player-list">
-                <li>
-                    <img
-                        class="list-cover"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-a1.png"
-                    />
-                    <div class="list-info">
-                        <div class="info-title">One Step At A Time</div>
-                        <div class="info-artist">BEARSON</div>
-                    </div>
-                </li>
-                <li>
-                    <img
-                        class="list-cover"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-a2.png"
-                    />
-                    <div class="list-info">
-                        <div class="info-title">Sunset Lover</div>
-                        <div class="info-artist">PETIT BISCUIT</div>
-                    </div>
-                </li>
-                <li>
-                    <img
-                        class="list-cover"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-a3.png"
-                    />
-                    <div class="list-info">
-                        <div class="info-title">Youth</div>
-                        <div class="info-artist">TROYE SIVAN</div>
-                    </div>
-                </li>
-                <li>
-                    <img
-                        class="list-cover"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-a4.png"
-                    />
-                    <div class="list-info">
-                        <div class="info-title">Working Girl</div>
-                        <div class="info-artist">LITTLE BOOTS</div>
-                    </div>
-                </li>
-            </ul>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
+            <div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div><div id="queue-items">
+                <h1>Song Name</h1>
+            </div>
         </div>
     </div>
+    <style>
+        @media screen and (max-width: 800px) {
+            .player-hub {
+                flex-direction: column !important;
+                height: unset !important;
+            }
+            .player-hub > div {
+                width: -webkit-fill-available !important;
+            }
+            .queue {
+                max-height: unset !important;
+                overflow: unset !important;
+            }
+            .player {
+                height: 70vh;
+            }
+        }
+
+        .player-hub {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            height: 70vh;
+        }
+        .player-hub > div {
+            background-color: #4f4f4f;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin: 0.5rem;
+            border-radius: 15px;
+        }
+        .queue {
+            justify-content: unset;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        
+    </style>
     <script src="./../../../js/music.js"></script>
 </Main>

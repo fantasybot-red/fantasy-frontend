@@ -269,11 +269,14 @@ import Hotjar from '@hotjar/browser';
     window.WebSocket = WebSocket;
 })();
 
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag("js", new Date());
-gtag("config", "G-YS5RWDRN7N");
+if (!navigator.webdriver) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-YS5RWDRN7N");
+    
+    const siteId = 3849480;
+    const hotjarVersion = 6;
+    Hotjar.init(siteId, hotjarVersion);
+}
 
-const siteId = 3849480;
-const hotjarVersion = 6;
-Hotjar.init(siteId, hotjarVersion);

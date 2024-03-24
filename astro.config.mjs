@@ -32,10 +32,15 @@ let vite_config = {
   }
 };
 
+let fake_header = ["Express", "PHP", "ASP.NET", "Next.js", "JSF", "web2py", "Virgool", "Alpine", "Vanilla", "WP Engine", "PageFly", "ZendServer"];
+
 export default defineConfig({
   output: 'server',
   server: {
-    port: import.meta.env.DEV ? 80 : undefined
+    port: import.meta.env.DEV ? 80 : undefined,
+    headers: {
+      "X-Powered-By": fake_header,
+    }
   },
   build: {
     assets: 'assets',

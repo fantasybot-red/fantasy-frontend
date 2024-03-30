@@ -3,6 +3,10 @@ import { Application } from "@splinetool/runtime";
 import * as THREE from 'three'
 import NET from "vanta/dist/vanta.net.min";
 
+if (navigator.webdriver) {
+    return;
+}
+
 const canvas = document.getElementById("canvas3d");
 const app = new Application(canvas);
 let m_data = await fetch("/assets/scene.splinecode");

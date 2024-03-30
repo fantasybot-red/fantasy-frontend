@@ -10,49 +10,43 @@ import BackBtn from "../../../components/back_btn.astro";
     </ControlBar>
     <div class="player-hub">
         <div class="player">
-            <h1>Welcome to Music</h1>
+            <div class="song-img-block">
+                <img
+                    id="song-img"
+                    src="https://i.scdn.co/image/ab67616d0000b273a75971bdd0f5c34b86a152b4"
+                    alt=""
+                />
+                <!-- <img
+                    id="song-img"
+                    src="https://i.ytimg.com/vi/PSD9yp8O6Yo/maxresdefault.jpg"
+                    alt=""
+                /> -->
+            </div>
+            <div id="info">
+                <h1 id="song-name">Song Name</h1>
+                <p id="song-platform">platform Name</p>
+            </div>
+            <div id="controls">
+                <button id="prev">
+                    <span class="material-symbols-outlined">
+                        skip_previous
+                    </span>
+                </button>
+                <button id="play">
+                    <span class="material-symbols-outlined">
+                        play_arrow
+                    </span>
+                </button>
+                <button id="next">
+                    <span class="material-symbols-outlined">
+                        skip_next
+                    </span>
+                </button>
+            </div>
         </div>
         <div class="queue">
+            <h1 class="center">Queue List</h1>
             <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div>
-            <div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
-                <h1>Song Name</h1>
-            </div><div id="queue-items">
                 <h1>Song Name</h1>
             </div>
         </div>
@@ -70,11 +64,10 @@ import BackBtn from "../../../components/back_btn.astro";
                 max-height: unset !important;
                 overflow: unset !important;
             }
-            .player {
-                height: 70vh;
-            }
         }
-
+        #song-platform {
+            text-align: center;
+        }
         .player-hub {
             display: flex;
             flex-direction: row;
@@ -94,7 +87,43 @@ import BackBtn from "../../../components/back_btn.astro";
             overflow-x: hidden;
             overflow-y: scroll;
         }
-        
+        .song-img-block {
+            display: flex;
+            height: 35vh;
+            width: 100%;
+            margin: 1rem;
+            justify-content: center;
+        }
+        #song-img {
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+        }
+        .player {
+            align-items: center;
+            padding: 1rem;
+        }
+        #controls button {
+            background-color: #ffffff38;
+            border: 1px;
+            border-radius: 5px;
+            padding: 0.5rem;
+        }
+        #controls button:hover {
+            background-color: #ffffff29;
+        }
+        #controls button:active {
+            background-color: #ffffff1a;
+        }
+        #controls button span {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+        .center {
+            text-align: center;
+        }
     </style>
     <script src="./../../../js/music.js"></script>
 </Main>

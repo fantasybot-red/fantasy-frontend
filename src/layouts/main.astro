@@ -3,17 +3,19 @@ var head_title = Astro.props.head_title;
 if (!head_title) {
     head_title = Astro.props.frontmatter.head_title;
 }
+let now_year = new Date().getFullYear();
 import Env_Script from "../components/env_script.astro";
 import Loading from "../components/loading.astro";
 import Nav_Bar from "../components/nav_bar.astro";
 import Footer_Bar from "../components/footer_bar.astro";
 import Analytics from "../components/analytics.astro";
+import MetaTag from "../components/meta_tag.astro";
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-            <meta charset="UTF-8" />
+        <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -25,11 +27,12 @@ import Analytics from "../components/analytics.astro";
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         />
-        <Analytics/>
-        <title>{head_title}</title>
+        <Analytics />
+        <MetaTag />
         <noscript>
             <title>Fantasy Security</title>
         </noscript>
+        <title>{head_title}</title>
     </head>
     <body>
         <Env_Script />
@@ -41,15 +44,35 @@ import Analytics from "../components/analytics.astro";
             </div>
             <Footer_Bar />
         </div>
+        <noscript>
+            <div class="noscript">
+                <div class="noscript-content">
+                    <h1 class="text-center">Fantasy Security</h1>
+                    <h2 class="text-center">Please turn on JavaScript or use another browser</h2>
+                    <p class="text-center">© {now_year} Fantasy Security</p>
+                </div>
+            </div>
+            <style>
+                .noscript {
+                    background-color: #af0000;
+                    overflow: hidden;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            </style>
+        </noscript>
+        <script
+            is:inline
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        ></script>
+        <script src="../js/init.js"></script>
     </body>
-    <noscript>
-        <div style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px">
-            <center><h1>Turn on JavaScript</h1></center>
-        </div>
-    </noscript>
-    <script
-        is:inline
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    ></script>
-    <script src="../js/init.js"></script>
 </html>

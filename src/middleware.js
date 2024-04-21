@@ -11,7 +11,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
         return Response.redirect(context.url);
     }
     let data = await next();
-    data.headers.set("Status", `https://httpstatusdogs.com/img/${data.status}.jpg`);
+    data.headers.set("Dogs", `https://httpstatusdogs.com/img/${data.status}.jpg`);
+    data.headers.set("Cats", `https://http.cat/images/${data.status}.jpg`);
     data.headers.set("X-Powered-By", fake_header);
     return data;
 });

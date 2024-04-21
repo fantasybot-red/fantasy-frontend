@@ -1,6 +1,8 @@
 import { defineMiddleware } from "astro:middleware";
 
-let fake_header = ["Express", "PHP", "ASP.NET", "Next.js", "JSF", "web2py", "Virgool", "Alpine", "Vanilla", "WP Engine", "PageFly", "ZendServer"];
+let fake_header = ["Express", "PHP", "ASP.NET", "Next.js", "JSF", "web2py", "Virgool", "Alpine", "Vanilla", 
+                    "WP Engine", "PageFly", "ZendServer", "Alpine", "CentOS", "Darwin", "XeoraCube", 
+                    "Red Hat", "Ubuntu", "PlatformOS"];
 
 export const onRequest = defineMiddleware(async (context, next) => {
     if (context.url.pathname.endsWith("/") && context.url.pathname !== "/") {

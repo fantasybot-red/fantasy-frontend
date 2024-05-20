@@ -1,0 +1,2 @@
+fantasy logo color
+linear-gradient(to right, #ff6a00, #ee0979)

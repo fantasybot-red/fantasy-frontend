@@ -9,10 +9,3 @@ if (!navigator.webdriver) {
     const hotjarVersion = 6;
     Hotjar.init(siteId, hotjarVersion);
 }
-
-(async () => {
-    if (!("serviceWorker" in navigator)) {
-        return;
-    }
-    await navigator.serviceWorker.register(`/sw.js`)
-})();
